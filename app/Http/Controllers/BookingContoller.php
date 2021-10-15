@@ -72,4 +72,41 @@ class BookingContoller extends Controller
 
         return response()->json($this->response, $this->status);
     }
+
+    public function getEngagedSeats($code)
+    {
+        $booking = Booking::where('code', $code)->first();
+        $passengers = Passenger::where('booking_id', $booking->id)->get();
+
+        $engagedSeatsFrom = [];
+        $engagedSeatsBack = [];
+
+        foreach ($passengers as $passenger) {
+            if ($passenger->place_from) {
+                $engagedSeatsFrom[] = [
+                    'passenger_id' => $passenger->id,
+                    'place' => $passenger->place_from,
+                ];
+            }
+
+            if ($passenger->place_back) {
+                $engagedSeatsBack[] = [
+                    'passenger_id' => $passenger->id,
+                    'place' => $passenger->place_back
+                ];
+            }
+        }
+
+
+        $this->response = [
+            'data' => [
+                'occupied_from' => $engagedSeatsFrom,
+                'occupied_back' => $engagedSeatsBack,
+            ]
+        ];
+
+
+
+        return response()->json($this->response, $this->status);
+    }
 }
