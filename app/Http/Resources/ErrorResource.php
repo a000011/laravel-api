@@ -14,9 +14,17 @@ class ErrorResource extends JsonResource
      */
     public function toArray($request)
     {
-
         $errors = [];
-        foreach ($this->messages() as $key => $error) {
+        $messages = [];
+
+        try{
+            $messages = $this->messages();
+        }
+        catch (\Exception $e){
+            $messages = $this->messages;
+        }
+
+        foreach ($messages as $key => $error) {
              $errors[$key] = $error;
         }
 
