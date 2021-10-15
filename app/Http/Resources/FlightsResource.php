@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AirportResource extends JsonResource
+class FlightsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +15,12 @@ class AirportResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'data'=> [
-                'items' => [
-                    'name' => $this->name,
-                    'iata' => $this->iata
-                ]
-            ]
+            'flight_id' => $this->id,
+            'flight_code' => $this->flight_code,
+            'from' => $this->to(),
+            'to' => $this->back(),
+            'cost' => $this->cost,
+            'availability' => 'neznau',
         ];
     }
 }

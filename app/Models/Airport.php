@@ -10,5 +10,11 @@ class Airport extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $table = 'airports';
 }

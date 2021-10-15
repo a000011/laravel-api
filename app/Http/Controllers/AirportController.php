@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Airport as AirportModel;
+use App\Http\Resources\AirportResource;
 
-class Airport extends Controller
+class AirportController extends Controller
 {
     public function getAirport(Request $request)
     {
@@ -28,6 +29,6 @@ class Airport extends Controller
             }
         }
 
-        return response()->json($findedAirport);
+        return response()->json(new AirportResource($findedAirport));
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\ErrorResource;
 use App\Http\Resources\UserResource;
 
-class User extends Controller
+class UserController extends Controller
 {
     private $status;
     private $response;
