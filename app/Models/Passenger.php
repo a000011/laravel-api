@@ -9,5 +9,11 @@ class Passenger extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'booking_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $table = 'passengers';
 }

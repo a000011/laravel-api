@@ -12,12 +12,12 @@ class Flights extends Model
 
     public function to()
     {
-        return Airport::where('id', $this->from_id)->first();
+        return Airport::where('id', $this->to_id)->first();
     }
 
-    public function back()
+    public function from()
     {
-        return Airport::where('id', $this->to_id)->first();
+        return Airport::where('id', $this->from_id)->first();
     }
     protected $table = 'flights';
 }

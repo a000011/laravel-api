@@ -14,3 +14,4 @@ Route::post('/login', [UserController::class, 'login']);
 Route::get('/airport', [AirportController::class, 'getAirport']);
 Route::get('/flight', [FlightController::class, 'getFlight']);
 Route::post('/booking', [BookingContoller::class, 'createBooking']);
+Route::get('/booking/{code}', [BookingContoller::class, 'getBooking']);

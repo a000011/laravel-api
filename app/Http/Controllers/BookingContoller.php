@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BookingResource;
 use Illuminate\Http\Request;
 use App\Models\Passenger;
 use App\Models\Booking;
@@ -53,6 +54,7 @@ class BookingContoller extends Controller
                 $passenger->save();
             }
 
+            $this->status = 201;
             $this->response = [
                 'data' => [
                     'code' => $booking->code
@@ -60,6 +62,13 @@ class BookingContoller extends Controller
             ];
         }
 
+        return response()->json($this->response, $this->status);
+    }
+
+    public function getBooking($code)
+    {
+        $booking = Booking::where('code', $code)->first();
+        $this->response = new BookingResource($booking);
 
         return response()->json($this->response, $this->status);
     }
